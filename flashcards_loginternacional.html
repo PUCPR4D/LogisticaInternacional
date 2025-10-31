@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flashcards Interativos</title>
+  <style>
+    :root{
+      --card-width: 260px;
+      --card-height: 180px;
+      --primary: #8A0538;
+      --radius: 12px;
+      --gap: 1.5rem;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: #f3f4f6;
+    }
+
+    /* Container with cards side-by-side */
+    .flashcards-container{
+      display: flex;
+      flex-direction: row; /* cards lado a lado */
+      gap: var(--gap);
+      align-items: stretch;
+      justify-content: center;
+      flex-wrap: wrap; /* quebra em telas pequenas */
+      max-width: 1200px;
+    }
+
+    .flashcard{
+      width: var(--card-width);
+      height: var(--card-height);
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .card-inner{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    /* usar classe is-flipped para controlar a rotação via JS */
+    .flashcard.is-flipped .card-inner{
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: var(--radius);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .card-front{
+      background-color: var(--primary);
+      color: white;
+      font-weight: 700;
+    }
+
+    .card-back{
+      background-color: #ffffff;
+      color: #222;
+      transform: rotateY(180deg);
+      border: 1px solid #e5e7eb;
+      font-weight: 500;
+    }
+
+    /* Acessibilidade: foco visível */
+    .flashcard:focus{
+      outline: 3px solid rgba(138,5,56,0.18);
+      outline-offset: 4px;
+    }
+
+    /* responsivo: em telas muito pequenas, os cartões ficam um abaixo do outro */
+    @media (max-width: 520px){
+      .flashcards-container{
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="flashcards-container" role="list">
+
+    <article class="flashcard" tabindex="0" role="listitem" aria-label="Flashcard pergunta 1">
+      <div class="card-inner">
+        <div class="card-front">Qual flashcard descreve uma prática eficaz para reduzir impactos de disrupções globais?</div>
+        <div class="card-back">Estabelecer contratos flexíveis e diversificar fornecedores em diferentes regiões.</div>
+      </div>
+    </article>
+
+    <article class="flashcard" tabindex="0" role="listitem" aria-label="Flashcard 2">
+      <div class="card-inner">
+        <div class="card-front">1</div>
+        <div class="card-back">Estabelecer contratos flexíveis e diversificar fornecedores em diferentes regiões.</div>
+      </div>
+    </article>
+
+    <article class="flashcard" tabindex="0" role="listitem" aria-label="Flashcard 3">
+      <div class="card-inner">
+        <div class="card-front">2</div>
+        <div class="card-back">Reduzir estoques ao mínimo obrigatório para diminuir os custos de manutenção.</div>
+      </div>
+    </article>
+
+    <article class="flashcard" tabindex="0" role="listitem" aria-label="Flashcard 4">
+      <div class="card-inner">
+        <div class="card-front">3</div>
+        <div class="card-back">Depender exclusivamente de um fornecedor confiável para centralizar as operações.</div>
+      </div>
+    </article>
+
+    <article class="flashcard" tabindex="0" role="listitem" aria-label="Flashcard 5">
+      <div class="card-inner">
+        <div class="card-front">4</div>
+        <div class="card-back">Utilizar exclusivamente transporte aéreo para reduzir o tempo de entrega.</div>
+      </div>
+    </article>
+
+  </main>
+
+  <script>
+    // Torna o elemento clicável/touch-friendly: alterna a classe is-flipped
+    document.querySelectorAll('.flashcard').forEach(card => {
+      // Clique / toque
+      card.addEventListener('click', () => {
+        card.classList.toggle('is-flipped');
+      });
+
+      // Suporte a teclado: Enter ou Espaço
+      card.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          card.classList.toggle('is-flipped');
+        }
+      });
+
+      // Para que o hover funcione em dispositivos apontadores, mantém a rotação também por hover
+      card.addEventListener('mouseenter', () => {
+        if(window.matchMedia('(hover: hover)').matches) {
+          card.classList.add('is-flipped');
+        }
+      });
+      card.addEventListener('mouseleave', () => {
+        if(window.matchMedia('(hover: hover)').matches) {
+          card.classList.remove('is-flipped');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
