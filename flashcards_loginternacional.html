@@ -9,8 +9,9 @@
       --card-width: 260px;
       --card-height: 180px;
       --primary: #8A0538;
+      --secondary: #DB5284;
       --radius: 12px;
-      --gap: 1.5rem;
+      --gap: 2.5rem; /* aumentei o espaçamento */
       font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -24,14 +25,14 @@
       background: #f3f4f6;
     }
 
-    /* Container with cards side-by-side */
+    /* Container com espaçamento entre os cards */
     .flashcards-container{
       display: flex;
-      flex-direction: row; /* cards lado a lado */
+      flex-direction: row;
       gap: var(--gap);
       align-items: stretch;
       justify-content: center;
-      flex-wrap: wrap; /* quebra em telas pequenas */
+      flex-wrap: wrap;
       max-width: 1200px;
     }
 
@@ -51,7 +52,6 @@
       transform-style: preserve-3d;
     }
 
-    /* usar classe is-flipped para controlar a rotação via JS */
     .flashcard.is-flipped .card-inner{
       transform: rotateY(180deg);
     }
@@ -77,6 +77,11 @@
       font-weight: 700;
     }
 
+    /* Define cor secundária para os flashcards 2–5 */
+    .flashcard:nth-child(n+2) .card-front{
+      background-color: var(--secondary);
+    }
+
     .card-back{
       background-color: #ffffff;
       color: #222;
@@ -85,13 +90,11 @@
       font-weight: 500;
     }
 
-    /* Acessibilidade: foco visível */
     .flashcard:focus{
       outline: 3px solid rgba(138,5,56,0.18);
       outline-offset: 4px;
     }
 
-    /* responsivo: em telas muito pequenas, os cartões ficam um abaixo do outro */
     @media (max-width: 520px){
       .flashcards-container{
         flex-direction: column;
@@ -142,14 +145,11 @@
   </main>
 
   <script>
-    // Torna o elemento clicável/touch-friendly: alterna a classe is-flipped
     document.querySelectorAll('.flashcard').forEach(card => {
-      // Clique / toque
       card.addEventListener('click', () => {
         card.classList.toggle('is-flipped');
       });
 
-      // Suporte a teclado: Enter ou Espaço
       card.addEventListener('keydown', (e) => {
         if(e.key === 'Enter' || e.key === ' '){
           e.preventDefault();
@@ -157,7 +157,6 @@
         }
       });
 
-      // Para que o hover funcione em dispositivos apontadores, mantém a rotação também por hover
       card.addEventListener('mouseenter', () => {
         if(window.matchMedia('(hover: hover)').matches) {
           card.classList.add('is-flipped');
