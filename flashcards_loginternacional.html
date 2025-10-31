@@ -9,7 +9,7 @@
       --card-width: 260px;
       --card-height: 180px;
       --primary: #8A0538;
-      --secondary: #DB5284;
+      --secondary: #9654ff;
       --radius: 12px;
       --gap: 2.5rem;
       font-family: Arial, Helvetica, sans-serif;
@@ -58,7 +58,8 @@
       transform-style: preserve-3d;
     }
 
-    .flashcard.is-flipped .card-inner{
+    /* Vira o card ao passar o mouse */
+    .flashcard:hover .card-inner{
       transform: rotateY(180deg);
     }
 
@@ -77,14 +78,18 @@
       line-height: 1.2;
     }
 
-    .card-front{
+    /* Primeira seção (cards 1 a 5) */
+    .section1 .card-front{
       background-color: var(--primary);
       color: white;
       font-weight: 700;
     }
 
-    .flashcard:nth-child(n+2) .card-front{
+    /* Segunda seção (cards 6 a 10) */
+    .section2 .card-front{
       background-color: var(--secondary);
+      color: white;
+      font-weight: 700;
     }
 
     .card-back{
@@ -95,163 +100,119 @@
       font-weight: 500;
     }
 
-    .flashcard:focus{
-      outline: 3px solid rgba(138,5,56,0.18);
-      outline-offset: 4px;
-    }
-
     @media (max-width: 520px){
       .flashcards-row{
         flex-direction: column;
         align-items: center;
       }
     }
+
+    /* Divisor visual entre grupos */
+    .divider {
+      margin: 2rem 0;
+      width: 80%;
+      height: 3px;
+      background-color: #ddd;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
 
   <main class="flashcards-wrapper">
-    <!-- Primeira linha: cards 1, 2 e 3 -->
-    <div class="flashcards-row">
-      <article class="flashcard" tabindex="0" aria-label="Flashcard pergunta 1">
-        <div class="card-inner">
-          <div class="card-front">PERGUNTA:
-            Qual opção descreve uma prática eficaz para reduzir impactos de disrupções globais?</div>
-          <div class="card-back"></div>
-        </div>
-      </article>
 
-      <article class="flashcard" tabindex="0" aria-label="Flashcard 2">
-        <div class="card-inner">
-          <div class="card-front">Opção 1: Estabelecer contratos flexíveis e diversificar fornecedores em diferentes regiões.</div>
-          <div class="card-back">Correto!A diversificação geográfica reduz os riscos de dependência de um único fornecedor, protegendo a operação de disrupções locais</div>
-        </div>
-      </article>
+    <!-- Primeira seção -->
+    <section class="section1">
+      <!-- Primeira linha: cards 1, 2 e 3 -->
+      <div class="flashcards-row">
+        <article class="flashcard" aria-label="Flashcard pergunta 1">
+          <div class="card-inner">
+            <div class="card-front">PERGUNTA:
+              Qual opção descreve uma prática eficaz para reduzir impactos de disrupções globais?</div>
+            <div class="card-back"></div>
+          </div>
+        </article>
 
-      <article class="flashcard" tabindex="0" aria-label="Flashcard 3">
-        <div class="card-inner">
-          <div class="card-front">Opção 2: Reduzir estoques ao mínimo obrigatório para diminuir os custos de manutenção.</div>
-          <div class="card-back">Incorreto! Embora o estoque reduzido diminua custos de manutenção, ele aumenta a vulnerabilidade da empresa a rupturas na cadeia de suprimentos.</div>
-        </div>
-      </article>
-    </div>
+        <article class="flashcard" aria-label="Flashcard 2">
+          <div class="card-inner">
+            <div class="card-front">Opção 1: Estabelecer contratos flexíveis e diversificar fornecedores.</div>
+            <div class="card-back">Correta! A diversificação geográfica reduz os riscos de dependência de um único fornecedor, protegendo a operação de disrupções locais.</div>
+          </div>
+        </article>
 
-    <!-- Segunda linha: cards 4 e 5 -->
-    <div class="flashcards-row">
-      <article class="flashcard" tabindex="0" aria-label="Flashcard 4">
-        <div class="card-inner">
-          <div class="card-front">Opção 3: Depender exclusivamente de um fornecedor confiável para centralizar as operações.</div>
-          <div class="card-back">Pode reduzir custos no curto prazo, mas aumenta significativamente os riscos.</div>
-        </div>
-      </article>
+        <article class="flashcard" aria-label="Flashcard 3">
+          <div class="card-inner">
+            <div class="card-front">Opção 2: Reduzir estoques ao mínimo obrigatório.</div>
+            <div class="card-back">Incorreta! Embora o estoque reduzido diminua custos de manutenção, ele aumenta a vulnerabilidade da empresa a rupturas na cadeia de suprimentos.</div>
+          </div>
+        </article>
+      </div>
 
-      <article class="flashcard" tabindex="0" aria-label="Flashcard 5">
-        <div class="card-inner">
-          <div class="card-front">Opção 4: Utilizar exclusivamente transporte aéreo para reduzir o tempo de entrega.</div>
-          <div class="card-back">O transporte aéreo é rápido, mas extremamente caro, limitando sua praticidade e afetando a resiliência quando há necessidade de custos baixos e maior flexibilidade.</div>
-        </div>
-      </article>
-    </div>
+      <!-- Segunda linha: cards 4 e 5 -->
+      <div class="flashcards-row">
+        <article class="flashcard" aria-label="Flashcard 4">
+          <div class="card-inner">
+            <div class="card-front">Opção 3: Depender exclusivamente de um fornecedor confiável.</div>
+            <div class="card-back">Incorreta! Pode reduzir custos no curto prazo, mas aumenta significativamente os riscos.</div>
+          </div>
+        </article>
+
+        <article class="flashcard" aria-label="Flashcard 5">
+          <div class="card-inner">
+            <div class="card-front">Opção 4: Utilizar exclusivamente transporte aéreo.</div>
+            <div class="card-back">Incorreta! O transporte aéreo é rápido, mas extremamente caro, limitando sua praticidade e afetando a resiliência quando há necessidade de custos baixos e maior flexibilidade.</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Segunda seção -->
+    <section class="section2">
+      <!-- Primeira linha: cards 6, 7 e 8 -->
+      <div class="flashcards-row">
+        <article class="flashcard" aria-label="Flashcard 6">
+          <div class="card-inner">
+            <div class="card-front">PERGUNTA: Qual tecnologia é mais indicada para aumentar a transparência e minimizar riscos em processos logísticos internacionais?</div>
+            <div class="card-back"></div>
+          </div>
+        </article>
+
+        <article class="flashcard" aria-label="Flashcard 7">
+          <div class="card-inner">
+            <div class="card-front">Opção 1: Big Data Analytics.</div>
+            <div class="card-back">Incorreta! Ajuda na previsão de demandas e na identificação de padrões, mas não promove diretamente a transparência de processos logísticos em tempo real.</div>
+          </div>
+        </article>
+
+        <article class="flashcard" aria-label="Flashcard 8">
+          <div class="card-inner">
+            <div class="card-front">Opção 2: Automação Robótica (RPA).</div>
+            <div class="card-back">Incorreta! Embora útil para automatizar processos internos, como emissão de documentos, ela não atua na transparência e na minimização direta de riscos logísticos externos.</div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Segunda linha: cards 9 e 10 -->
+      <div class="flashcards-row">
+        <article class="flashcard" aria-label="Flashcard 9">
+          <div class="card-inner">
+            <div class="card-front">Opção 3: Blockchain.</div>
+            <div class="card-back">Correta! Oferece registros imutáveis e um acompanhamento transparente de todas as etapas do transporte, facilitando auditorias e garantindo maior segurança e rastreabilidade nos processos logísticos globais.</div>
+          </div>
+        </article>
+
+        <article class="flashcard" aria-label="Flashcard 10">
+          <div class="card-inner">
+            <div class="card-front">Opção 4: Manufatura Aditiva.</div>
+            <div class="card-back">Incorreta! Essa tecnologia, como a impressão 3D, é eficaz na customização de produtos, mas não atende às necessidades de rastreabilidade e transparência para logística global.</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
   </main>
-
-  <script>
-    document.querySelectorAll('.flashcard').forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('is-flipped');
-      });
-
-      card.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          card.classList.toggle('is-flipped');
-        }
-      });
-
-      card.addEventListener('mouseenter', () => {
-        if(window.matchMedia('(hover: hover)').matches) {
-          card.classList.add('is-flipped');
-        }
-      });
-      card.addEventListener('mouseleave', () => {
-        if(window.matchMedia('(hover: hover)').matches) {
-          card.classList.remove('is-flipped');
-        }
-      });
-    });
-  </script>
-
-</body>
-  <body>
-
-  <main class="flashcards-wrapper">
-    <!-- Primeira linha: cards 1, 2 e 3 -->
-    <div class="flashcards-row">
-      <article class="flashcard" tabindex="0" aria-label="Flashcard pergunta 1">
-        <div class="card-inner">
-          <div class="card-front">PERGUNTA:
-            Qual opção descreve uma prática eficaz para reduzir impactos de disrupções globais?</div>
-          <div class="card-back"></div>
-        </div>
-      </article>
-
-      <article class="flashcard" tabindex="0" aria-label="Flashcard 2">
-        <div class="card-inner">
-          <div class="card-front">Opção 1: Estabelecer contratos flexíveis e diversificar fornecedores em diferentes regiões.</div>
-          <div class="card-back">Correto!A diversificação geográfica reduz os riscos de dependência de um único fornecedor, protegendo a operação de disrupções locais</div>
-        </div>
-      </article>
-
-      <article class="flashcard" tabindex="0" aria-label="Flashcard 3">
-        <div class="card-inner">
-          <div class="card-front">Opção 2: Reduzir estoques ao mínimo obrigatório para diminuir os custos de manutenção.</div>
-          <div class="card-back">Incorreto! Embora o estoque reduzido diminua custos de manutenção, ele aumenta a vulnerabilidade da empresa a rupturas na cadeia de suprimentos.</div>
-        </div>
-      </article>
-    </div>
-
-    <!-- Segunda linha: cards 4 e 5 -->
-    <div class="flashcards-row">
-      <article class="flashcard" tabindex="0" aria-label="Flashcard 4">
-        <div class="card-inner">
-          <div class="card-front">Opção 3: Depender exclusivamente de um fornecedor confiável para centralizar as operações.</div>
-          <div class="card-back">Pode reduzir custos no curto prazo, mas aumenta significativamente os riscos.</div>
-        </div>
-      </article>
-
-      <article class="flashcard" tabindex="0" aria-label="Flashcard 5">
-        <div class="card-inner">
-          <div class="card-front">Opção 4: Utilizar exclusivamente transporte aéreo para reduzir o tempo de entrega.</div>
-          <div class="card-back">O transporte aéreo é rápido, mas extremamente caro, limitando sua praticidade e afetando a resiliência quando há necessidade de custos baixos e maior flexibilidade.</div>
-        </div>
-      </article>
-    </div>
-  </main>
-
-  <script>
-    document.querySelectorAll('.flashcard').forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('is-flipped');
-      });
-
-      card.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          card.classList.toggle('is-flipped');
-        }
-      });
-
-      card.addEventListener('mouseenter', () => {
-        if(window.matchMedia('(hover: hover)').matches) {
-          card.classList.add('is-flipped');
-        }
-      });
-      card.addEventListener('mouseleave', () => {
-        if(window.matchMedia('(hover: hover)').matches) {
-          card.classList.remove('is-flipped');
-        }
-      });
-    });
-  </script>
 
 </body>
 </html>
