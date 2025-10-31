@@ -181,4 +181,77 @@
   </script>
 
 </body>
+  <body>
+
+  <main class="flashcards-wrapper">
+    <!-- Primeira linha: cards 1, 2 e 3 -->
+    <div class="flashcards-row">
+      <article class="flashcard" tabindex="0" aria-label="Flashcard pergunta 1">
+        <div class="card-inner">
+          <div class="card-front">PERGUNTA:
+            Qual opção descreve uma prática eficaz para reduzir impactos de disrupções globais?</div>
+          <div class="card-back"></div>
+        </div>
+      </article>
+
+      <article class="flashcard" tabindex="0" aria-label="Flashcard 2">
+        <div class="card-inner">
+          <div class="card-front">Opção 1: Estabelecer contratos flexíveis e diversificar fornecedores em diferentes regiões.</div>
+          <div class="card-back">Correto!A diversificação geográfica reduz os riscos de dependência de um único fornecedor, protegendo a operação de disrupções locais</div>
+        </div>
+      </article>
+
+      <article class="flashcard" tabindex="0" aria-label="Flashcard 3">
+        <div class="card-inner">
+          <div class="card-front">Opção 2: Reduzir estoques ao mínimo obrigatório para diminuir os custos de manutenção.</div>
+          <div class="card-back">Incorreto! Embora o estoque reduzido diminua custos de manutenção, ele aumenta a vulnerabilidade da empresa a rupturas na cadeia de suprimentos.</div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Segunda linha: cards 4 e 5 -->
+    <div class="flashcards-row">
+      <article class="flashcard" tabindex="0" aria-label="Flashcard 4">
+        <div class="card-inner">
+          <div class="card-front">Opção 3: Depender exclusivamente de um fornecedor confiável para centralizar as operações.</div>
+          <div class="card-back">Pode reduzir custos no curto prazo, mas aumenta significativamente os riscos.</div>
+        </div>
+      </article>
+
+      <article class="flashcard" tabindex="0" aria-label="Flashcard 5">
+        <div class="card-inner">
+          <div class="card-front">Opção 4: Utilizar exclusivamente transporte aéreo para reduzir o tempo de entrega.</div>
+          <div class="card-back">O transporte aéreo é rápido, mas extremamente caro, limitando sua praticidade e afetando a resiliência quando há necessidade de custos baixos e maior flexibilidade.</div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script>
+    document.querySelectorAll('.flashcard').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('is-flipped');
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          card.classList.toggle('is-flipped');
+        }
+      });
+
+      card.addEventListener('mouseenter', () => {
+        if(window.matchMedia('(hover: hover)').matches) {
+          card.classList.add('is-flipped');
+        }
+      });
+      card.addEventListener('mouseleave', () => {
+        if(window.matchMedia('(hover: hover)').matches) {
+          card.classList.remove('is-flipped');
+        }
+      });
+    });
+  </script>
+
+</body>
 </html>
