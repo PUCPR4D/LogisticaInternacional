@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flashcard com Imagens</title>
+  <style>
+    :root {
+      --card-width: 1300px; /* 260 x 5 */
+      --card-height: 900px; /* 180 x 5 */
+      --radius: 20px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f3f4f6;
+      font-family: sans-serif;
+    }
+
+    .flashcard {
+      width: var(--card-width);
+      height: var(--card-height);
+      perspective: 1500px;
+      cursor: pointer;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flashcard:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      backface-visibility: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Frente do card */
+    .card-front {
+      background-image: url("https://picsum.photos/id/1018/1300/900");
+    }
+
+    /* Verso do card */
+    .card-back {
+      background-image: url("https://picsum.photos/id/1025/1300/900");
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <article class="flashcard" aria-label="Flashcard com imagens">
+    <div class="card-inner">
+      <div class="card-front"></div>
+      <div class="card-back"></div>
+    </div>
+  </article>
+
+</body>
+</html>
