@@ -6,8 +6,8 @@
   <title>Flashcard com Imagens</title>
   <style>
     :root {
-      --card-width: 1300px;
-      --card-height: 900px;
+      --card-width: 800px;  /* tamanho reduzido */
+      --card-height: 500px;
       --radius: 20px;
     }
 
@@ -36,7 +36,7 @@
       transform-style: preserve-3d;
     }
 
-    .flashcard:hover .card-inner {
+    .flashcard.flipped .card-inner {
       transform: rotateY(180deg);
     }
 
@@ -72,6 +72,13 @@
       <div class="card-back"></div>
     </div>
   </article>
+
+  <script>
+    const flashcard = document.querySelector('.flashcard');
+    flashcard.addEventListener('click', () => {
+      flashcard.classList.toggle('flipped');
+    });
+  </script>
 
 </body>
 </html>
