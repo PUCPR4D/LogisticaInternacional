@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Jornada logística do café especial</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #2f5d62;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    .container {
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+    }
+    .step {
+        background: white;
+        padding: 15px;
+        margin: 10px 0;
+        border-left: 5px solid #3a7ca5;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .step:hover {
+        background: #eef5f9;
+    }
+    .content {
+        display: none;
+        margin-top: 10px;
+    }
+    .question {
+        margin-top: 20px;
+        padding: 15px;
+        background: #fff3cd;
+        border-left: 5px solid #ffc107;
+    }
+    button {
+        margin-top: 10px;
+        padding: 8px 12px;
+        border: none;
+        background: #3a7ca5;
+        color: white;
+        cursor: pointer;
+    }
+    .feedback {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Do Cerrado mineiro a Hamburgo</h1>
+    <p>Explore a jornada logística do café especial e tome decisões estratégicas</p>
+</header>
+
+<div class="container">
+
+    <h2>📍 Clique nas etapas para explorar:</h2>
+
+    <div class="step" onclick="toggle('s1')">
+        🌱 Origem: Fazenda no cerrado mineiro
+        <div id="s1" class="content">
+            Coleta, amostragem, peneiramento e controle de umidade garantem a qualidade inicial do café.
+        </div>
+    </div>
+
+    <div class="step" onclick="toggle('s2')">
+        🚛 Transporte rodoviário até o porto de Santos
+        <div id="s2" class="content">
+            Modal flexível, porém sujeito a variáveis como trânsito, custo de combustível e segurança.
+        </div>
+    </div>
+
+    <div class="step" onclick="toggle('s3')">
+        📦 Containerização e inspeção
+        <div id="s3" class="content">
+            Uso de contêiner dry ventilado para preservar qualidade. Inspeção e desembaraço são críticos.
+        </div>
+    </div>
+
+    <div class="step" onclick="toggle('s4')">
+        🚢 Transporte marítimo (Santos → Hamburgo)
+        <div id="s4" class="content">
+            Modal de menor custo unitário, porém com maior tempo de trânsito.
+        </div>
+    </div>
+
+    <div class="step" onclick="toggle('s5')">
+        ⚓ Desembarque e liberação na Alemanha
+        <div id="s5" class="content">
+            Inspeção sanitária e aduaneira. Possíveis atrasos impactam o lead time total.
+        </div>
+    </div>
+
+    <div class="step" onclick="toggle('s6')">
+        🚚 Entrega ao cliente (Torrefador)
+        <div id="s6" class="content">
+            Distribuição final via rodovia ou ferrovia até o cliente B2B.
+        </div>
+    </div>
+
+    <!-- Pergunta interativa -->
+    <div class="question">
+        <h3>🤔 Tomada de decisão</h3>
+        <p>Se o objetivo é reduzir o risco de perda de qualidade do café durante o transporte, qual decisão é mais adequada?</p>
+
+        <button onclick="responder('a')">A) Usar qualquer tipo de contêiner para reduzir custo</button><br>
+        <button onclick="responder('b')">B) Utilizar contêiner dry ventilado</button><br>
+        <button onclick="responder('c')">C) Priorizar apenas o transporte mais rápido</button>
+
+        <div id="feedback" class="feedback"></div>
+    </div>
+
+</div>
+
+<script>
+function toggle(id) {
+    var el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+}
+
+function responder(opcao) {
+    let feedback = document.getElementById("feedback");
+
+    if (opcao === "b") {
+        feedback.innerHTML = "✅ Correto! O contêiner ventilado reduz umidade e preserva a qualidade do café.";
+        feedback.style.color = "green";
+    } else {
+        feedback.innerHTML = "❌ Incorreto. Essa decisão pode comprometer a qualidade ou aumentar riscos logísticos.";
+        feedback.style.color = "red";
+    }
+}
+</script>
+
+</body>
+</html>
