@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Gestão de riscos logísticos</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.box {
+    background: white;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: none;
+    background: #2f5d62;
+    color: white;
+    cursor: pointer;
+}
+
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>⚖️ Decisão logística: Custo × Tempo × Risco</h2>
+
+<div class="box">
+    <h3>⚠️ Selecione suas estratégias de mitigação:</h3>
+
+    <input type="checkbox" value="1"> Contêiner ventilado + inspeção<br>
+    <input type="checkbox" value="2"> Buffer de embarque<br>
+    <input type="checkbox" value="3"> Rastreamento e seguro<br>
+    <input type="checkbox" value="4"> Embalagem reforçada<br>
+    <input type="checkbox" value="5"> Hedge cambial<br>
+
+    <button onclick="calcular()">Calcular decisão</button>
+
+    <div id="resultado" class="result"></div>
+</div>
+
+</div>
+
+<script>
+
+function calcular() {
+
+    let checkboxes = document.querySelectorAll("input[type=checkbox]");
+    
+    let custo = 0;
+    let tempo = 0;
+    let risco = 10;
+
+    checkboxes.forEach(cb => {
+        if (cb.checked) {
+            switch(cb.value) {
+
+                case "1":
+                    custo += 2;
+                    risco -= 3;
+                    break;
+
+                case "2":
+                    custo += 1;
+                    tempo += 2;
+                    risco -= 2;
+                    break;
+
+                case "3":
+                    custo += 2;
+                    risco -= 3;
+                    break;
+
+                case "4":
+                    custo += 1;
+                    risco -= 2;
+                    break;
+
+                case "5":
+                    custo += 1;
+                    risco -= 1;
+                    break;
+            }
+        }
+    });
+
+    let custoTotal = custo + tempo + risco;
+
+    let feedback = "";
+
+    if (custoTotal <= 8) {
+        feedback = "🏆 Excelente decisão! Você minimizou o custo total logístico com equilíbrio entre risco, tempo e custo.";
+    } else if (custoTotal <= 12) {
+        feedback = "👍 Boa decisão, mas ainda há oportunidades de otimização.";
+    } else {
+        feedback = "⚠️ Decisão ineficiente. O custo total está elevado — reveja suas escolhas.";
+    }
+
+    document.getElementById("resultado").innerHTML =
+        "Custo: " + custo +
+        " | Tempo: " + tempo +
+        " | Risco: " + risco +
+        "<br><br>" + feedback;
+}
+
+</script>
+
+</body>
+</html>
