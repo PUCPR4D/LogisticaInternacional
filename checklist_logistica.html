@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Checklist </title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f8;
+        padding: 20px;
+    }
+    .container {
+        max-width: 700px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+        text-align: center;
+    }
+    .item {
+        margin: 12px 0;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+    }
+    .item:hover {
+        background-color: #f0f8ff;
+    }
+    .checked {
+        background-color: #d4edda;
+        border-color: #28a745;
+    }
+    .label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .hidden-content {
+        display: none;
+        margin-left: 25px;
+        margin-top: 5px;
+        color: #555;
+    }
+    .progress-bar {
+        height: 20px;
+        background: #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+    .progress {
+        height: 100%;
+        width: 0%;
+        background: #28a745;
+        transition: width 0.4s;
+    }
+    .progress-text {
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📋 Checklist documental e decisões críticas</h2>
+
+    <div class="item">
+        <label class="label">
+            <input type="checkbox" onchange="toggleCheck(this)">
+            <span>Incoterm recomendado</span>
+        </label>
+        <div class="hidden-content">FCA/CD MG ou FOB/Santos (clareza de responsabilidades)</div>
+    </div>
+
+    <div class="item">
+        <label class="label">
+            <input type="checkbox" onchange="toggleCheck(this)">
+            <span>Seguro</span>
+        </label>
+        <div class="hidden-content">ICC(A) para cobertura ampla durante todo o percurso</div>
+    </div>
+
+    <div class="item">
+        <label class="label">
+            <input type="checkbox" onchange="toggleCheck(this)">
+            <span>Documentos</span>
+        </label>
+        <div class="hidden-content">DU-E, Invoice, Packing List, Certificado de Origem, Fitossanitário/Qualidade</div>
+    </div>
+
+    <div class="item">
+        <label class="label">
+            <input type="checkbox" onchange="toggleCheck(this)">
+            <span>Booking e VGM confirmados</span>
+        </label>
+        <div class="hidden-content">Canal de inspeção definido</div>
+    </div>
+
+    <div class="item">
+        <label class="label">
+            <input type="checkbox" onchange="toggleCheck(this)">
+            <span>Regimes e facilidades</span>
+        </label>
+        <div class="hidden-content">Entreposto Aduaneiro para flexibilizar prazos; uso de terminal retroportuário para reduzir variabilidade</div>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="progress-text" id="progressText">0% concluído</div>
+</div>
+
+<script>
+    function toggleCheck(checkbox) {
+        const item = checkbox.closest(".item");
+        const content = item.querySelector(".hidden-content");
+
+        // Marca visual
+        item.classList.toggle("checked", checkbox.checked);
+
+        // Mostra/oculta resposta
+        content.style.display = checkbox.checked ? "block" : "none";
+
+        updateProgress();
+    }
+
+    function updateProgress() {
+        const items = document.querySelectorAll(".item");
+        const checked = document.querySelectorAll("input[type='checkbox']:checked");
+        const percent = Math.round((checked.length / items.length) * 100);
+
+        document.getElementById("progress").style.width = percent + "%";
+        document.getElementById("progressText").innerText = percent + "% concluído";
+    }
+</script>
+
+</body>
+</html>
